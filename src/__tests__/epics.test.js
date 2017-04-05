@@ -1,5 +1,5 @@
-import rootEpic, { copyEpic } from '../epics';
-import { ActionsObservable, combineEpics } from 'redux-observable';
+import { _copyEpic, _rootEpic } from '../epics';
+import { combineEpics } from 'redux-observable';
 import { COPY } from '../signals';
 import { expect } from 'chai';
 import configureMockStore from 'redux-mock-store';
@@ -27,7 +27,7 @@ const createDebugEpic = () => {
 };
 
 describe('epics', function() {
-  describe('::copyEpic', function() {
+  describe('::_copyEpic', function() {
     beforeEach(function() {
       const {
         debugSubject,
@@ -39,7 +39,7 @@ describe('epics', function() {
       const epicMiddleware = createEpicMiddleware(
         combineEpics(
           debugEpic,
-          copyEpic.bind(
+          _copyEpic.bind(
             null,
             this.copyContentStub,
             () => ({ type: 'SUCCESS' }),
@@ -90,7 +90,7 @@ describe('epics', function() {
     });
   });
 
-  describe('::rootEpic', function() {
+  describe('::_rootEpic', function() {
     
   });
 });

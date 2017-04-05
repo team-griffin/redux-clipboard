@@ -1,10 +1,19 @@
 import * as signals from './signals';
+import * as messages from './messages';
+import * as utils from './utils';
 import { combineEpics } from 'redux-observable';
-// Adders
+import { curry } from 'ramda';
+// Static
+import { merge as mergeStatic } from 'rxjs/observable/merge';
 // Binders
 import { map } from 'rxjs/operator/map';
+import { withLatestFrom } from 'rxjs/operator/withLatestFrom';
+import { mapTo } from 'rxjs/operator/mapTo';
+import { partition } from 'rxjs/operator/partition';
+import { switchMap } from 'rxjs/operator/switchMap';
+import { letProto as yonk } from 'rxjs/operator/let';
 
-export const copyEpic = (
+export const _copyEpic = (
   copyContent,
   copySuccess,
   copyFailure,
@@ -14,19 +23,36 @@ export const copyEpic = (
     ::map(({
       payload,
     }) => payload)
-    ::map(({
-      content,
-    }) => {
-      if (copyContent(content) === true) {
-        return copySuccess(content);
-      }
+    ::yonk((obs) => {
+      const [
+        success,
+        error
+      ] = obs::partition(({ content }) => copyContent(content));
 
-      return copyFailure();
+      return mergeStatic(
+        success
+          ::withLatestFrom(obs)
+          ::map(([result, { content }]) => {
+            return copySuccess(content)
+          }),
+        error::mapTo(copyFailure())
+      );
     });
 };
 
-export default (copyEpicFn) => {
-  return combineEpics(
+export const _rootEpic = (combineEpicsFn, copyEpicFn) => {
+  return combineEpicsFn(
     copyEpicFn,
   );
 };
+
+export const copyEpic = curry(_copyEpic)(
+  utils.copyContent,
+  messages.copySuccess,
+  messages.copyFailure,
+);
+
+export default curry(_rootEpic)(
+  combineEpics,
+  copyEpic,
+);

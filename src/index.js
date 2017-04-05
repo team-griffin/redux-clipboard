@@ -1,15 +1,11 @@
-import composite from './composite';
-
-const {
-  messages,
-  signals,
-  utils,
-  epics,
-} = composite();
+import * as signals from './signals';
+import * as messages from './messages';
+import * as utils from './utils';
+import * as epics from './epics';
 
 export {
-  messages,
   signals,
+  messages,
   utils,
   epics,
 };

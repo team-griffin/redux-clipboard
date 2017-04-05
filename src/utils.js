@@ -1,3 +1,5 @@
+import { curry, compose } from 'ramda';
+
 const createElement = (document) => {
   return document.createElement('textarea');
 };
@@ -34,8 +36,8 @@ const attemptCopy = (copyFn) => {
   }
 };
 
-export const copyContent = (document, content) => {
-  const el = createElement.bind(null, document);
+export const _copyContent = (document, content) => {
+  const el = createElement(document);
   makeElementHidden(el);
   setElementValue(el, content);
 
@@ -47,3 +49,9 @@ export const copyContent = (document, content) => {
 
   return result;
 };
+
+const getGlobal = () => {
+  return document;
+};
+
+export const copyContent = (content) => _copyContent(getGlobal(), content);
