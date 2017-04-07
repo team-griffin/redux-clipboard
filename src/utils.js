@@ -1,4 +1,3 @@
-import { curry, compose } from 'ramda';
 
 const createElement = (document) => {
   return document.createElement('textarea');
@@ -15,8 +14,6 @@ const makeElementHidden = (el) => {
   el.style.outline = 'none';
   el.style.boxShadow = 'none';
   el.style.background = 'transparent';
-
-  return el;
 };
 
 const setElementValue = (el, value) => {
@@ -50,8 +47,4 @@ export const _copyContent = (document, content) => {
   return result;
 };
 
-const getGlobal = () => {
-  return document;
-};
-
-export const copyContent = (content) => _copyContent(getGlobal(), content);
+export const copyContent = (content) => _copyContent(document, content);
