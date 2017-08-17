@@ -1,7 +1,13 @@
-import * as signals from './signals';
-import * as messages from './messages';
-import * as utils from './utils';
-import * as epics from './epics';
+import composite from './composite';
+
+const {
+  messages,
+  signals,
+  utils,
+  epics: {
+    rootEpic: epics,
+  },
+} = composite();
 
 export {
   signals,
