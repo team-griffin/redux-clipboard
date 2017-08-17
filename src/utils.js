@@ -20,6 +20,10 @@ const setElementValue = (el, value) => {
   el.value = value;
 };
 
+const selectElement = (el) => {
+  el.select();
+};
+
 const copy = (document) => {
   document.execCommand('copy');
 };
@@ -33,18 +37,16 @@ const attemptCopy = (copyFn) => {
   }
 };
 
-export const _copyContent = (document, content) => {
+export const copyContent = (document, content) => {
   const el = createElement(document);
   makeElementHidden(el);
   setElementValue(el, content);
 
   document.body.appendChild(el);
-  el.select();
+  selectElement(el);
 
-  const result = attemptCopy(copy(document));
+  const result = attemptCopy(() => copy(document));
   document.body.removeChild(el);
 
   return result;
 };
-
-export const copyContent = (content) => _copyContent(document, content);
