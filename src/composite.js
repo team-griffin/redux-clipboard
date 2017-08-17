@@ -10,7 +10,7 @@ const external = {
 
 export default () => pat([
   [ 'utils.copyContent', [ 'external.document' ] ],
-  [ 'epics.copy', [ 'utils.copyContent' ] ],
+  [ 'epics.copyEpic', [ 'utils.copyContent' ] ],
   [ 'epics.rootEpic', [ 'epics.copyEpic' ] ],
 ], {
   messages,
