@@ -1,1 +1,0 @@
-/home/jackellis/projects/redux-clipboard/config/.eslintrc.js
