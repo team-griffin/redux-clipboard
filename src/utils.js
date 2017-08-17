@@ -1,3 +1,4 @@
+
 const createElement = (document) => {
   return document.createElement('textarea');
 };
@@ -13,12 +14,14 @@ const makeElementHidden = (el) => {
   el.style.outline = 'none';
   el.style.boxShadow = 'none';
   el.style.background = 'transparent';
-
-  return el;
 };
 
 const setElementValue = (el, value) => {
   el.value = value;
+};
+
+const selectElement = (el) => {
+  el.select();
 };
 
 const copy = (document) => {
@@ -35,14 +38,14 @@ const attemptCopy = (copyFn) => {
 };
 
 export const copyContent = (document, content) => {
-  const el = createElement.bind(null, document);
+  const el = createElement(document);
   makeElementHidden(el);
   setElementValue(el, content);
 
   document.body.appendChild(el);
-  el.select();
+  selectElement(el);
 
-  const result = attemptCopy(copy(document));
+  const result = attemptCopy(() => copy(document));
   document.body.removeChild(el);
 
   return result;

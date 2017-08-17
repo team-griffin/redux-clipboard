@@ -4,12 +4,14 @@ const {
   messages,
   signals,
   utils,
-  epics,
+  epics: {
+    rootEpic: epics,
+  },
 } = composite();
 
 export {
-  messages,
   signals,
+  messages,
   utils,
   epics,
 };
