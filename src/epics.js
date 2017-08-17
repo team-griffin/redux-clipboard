@@ -1,32 +1,31 @@
+import * as most from 'most';
+import { select, combineEpics } from 'redux-most';
+import r from 'ramda';
+
 import * as signals from './signals';
-import { combineEpics } from 'redux-observable';
-// Adders
-// Binders
-import { map } from 'rxjs/operator/map';
+import * as messages from './messages';
+
+const mmapc = r.curryN(2, most.map);
 
 export const copyEpic = (
   copyContent,
-  copySuccess,
-  copyFailure,
   actions$
 ) => {
-  return actions$.ofType(signals.COPY)
-    ::map(({
-      payload,
-    }) => payload)
-    ::map(({
-      content,
-    }) => {
-      if (copyContent(content) === true) {
-        return copySuccess(content);
+  return r.pipe(
+    select(signals.COPY),
+    mmapc((action) => {
+      const {
+        payload: {
+          content,
+        },
+      } = action;
+
+      if (copyContent(content) === true){
+        return messages.copySuccess(content);
       }
-
-      return copyFailure();
-    });
+      return messages.copyFailure();
+    }),
+  )(actions$);
 };
 
-export default (copyEpicFn) => {
-  return combineEpics(
-    copyEpicFn,
-  );
-};
+export const rootEpic = (...epics) => combineEpics(epics);
