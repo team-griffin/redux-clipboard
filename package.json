@@ -1,6 +1,6 @@
 {
   "name": "@team-griffin/redux-clipboard",
-  "version": "0.0.2",
+  "version": "1.0.0-rc.1",
   "main": "lib/index.js",
   "jsnext:main": "lib/index.js",
   "repository": "git@github.com:team-griffin/redux-clipboard.git",
@@ -13,7 +13,7 @@
     "lint": "npm run lint:js && npm run flow",
     "lint:js": "eslint -c ./config/.eslintrc.js 'src/**/*.js'",
     "lint:js:fix": "eslint --fix -c ./config/.eslintrc.js 'src/**/*.js'",
-    "flow": "flow check; test $? -eq 0 -o $? -eq 2",
+    "flow": "flow check --show-all-errors; test $? -eq 0 -o $? -eq 2",
     "build": "npm run transpile",
     "test": "mocha --require babel-polyfill --compilers js:babel-register 'src/**/__tests__/*' -R spec",
     "ci": "npm run lint && npm run test && npm run build",

@@ -1,3 +1,4 @@
+
 const createElement = (document) => {
   return document.createElement('textarea');
 };
@@ -13,8 +14,6 @@ const makeElementHidden = (el) => {
   el.style.outline = 'none';
   el.style.boxShadow = 'none';
   el.style.background = 'transparent';
-
-  return el;
 };
 
 const setElementValue = (el, value) => {

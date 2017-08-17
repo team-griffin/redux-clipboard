@@ -7,7 +7,7 @@ import * as messages from './messages';
 
 const mmapc = r.curryN(2, most.map);
 
-export const copyEpic = (
+export const _copyEpic = (
   copyContent,
   actions$
 ) => {

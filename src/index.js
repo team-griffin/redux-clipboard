@@ -10,8 +10,8 @@ const {
 } = composite();
 
 export {
-  messages,
   signals,
+  messages,
   utils,
   epics,
 };
