@@ -1,3 +1,4 @@
+/* eslint-disable */
 
 const createElement = (document) => {
   return document.createElement('textarea');
