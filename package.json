@@ -1,6 +1,6 @@
 {
   "name": "@team-griffin/redux-clipboard",
-  "version": "1.0.0-rc.1",
+  "version": "1.0.0",
   "main": "lib/index.js",
   "jsnext:main": "lib/index.js",
   "repository": "git@github.com:team-griffin/redux-clipboard.git",
