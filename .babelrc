@@ -20,5 +20,24 @@
     ["transform-object-rest-spread", { "useBuiltIns": true }],
     "ramda",
     "transform-decorators-legacy"
-  ]
+  ],
+  "env": {
+    "test": {
+      "presets": [
+        [
+          "env",
+          {
+            "targets": {
+              "browsers": [
+                "last 2 versions",
+                "safari >= 7"
+              ],
+            },
+            "modules": "commonjs",
+            "useBuiltIns": false,
+          }
+        ]
+      ],
+    },
+  },
 }

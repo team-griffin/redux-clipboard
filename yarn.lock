@@ -2643,9 +2643,9 @@ parse-json@^2.2.0:
   dependencies:
     error-ex "^1.2.0"
 
-partial-application-tree@^0.4.0:
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/partial-application-tree/-/partial-application-tree-0.4.0.tgz#f56ce9fe9d48db81dc791baf47d0040170b3457f"
+partial-application-tree@^0.5.0:
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/partial-application-tree/-/partial-application-tree-0.5.0.tgz#7f3b28743d559937ab58ed14d7382ecc21ec66b2"
   dependencies:
     invariant "^2.2.2"
     ramda "^0.25.0"
